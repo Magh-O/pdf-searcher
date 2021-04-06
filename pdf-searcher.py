@@ -4,13 +4,13 @@ import io
 import os
 import pathlib
 
+#Import the dependencies for pdf extraction
 from pdfminer.converter import TextConverter
 from pdfminer.pdfinterp import PDFPageInterpreter
 from pdfminer.pdfinterp import PDFResourceManager
 from pdfminer.pdfpage import PDFPage
 
 pdf_path = './test.pdf'
-search_word = "global"
 
 def search_text(page, search_word):
 
