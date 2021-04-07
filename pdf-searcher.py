@@ -13,6 +13,8 @@ from pdfminer.pdfpage import PDFPage
 pdf_path = './test.pdf'
 
 def search_text(page, search_word):
+    """This function gets a page in string format and a word to search, if the word appears in the 
+    page text it returns True"""
 
     index = page.lower().find(search_word.lower())
     if index>=0:
@@ -62,18 +64,21 @@ def search_word_dir(filepath, search_word):
 
     print("Finished.")
 
-def main():
+def main_loop():
+
     print(f"The current folder is {pathlib.Path(__file__).parent.absolute()}")
     print("//////////////////////////////////////////////////////////////////")
     print("Introduce la palabra que desees encontrar, escribe exit para salir: ")
     while True:
+
         try:
             user_in = str(input(">"))
         except ValueError:
             print("Not valid format")
+
         if user_in != "exit":
             search_word_dir('./files-to-search', user_in)
         else:
             break
 
-main()
+main_loop()
