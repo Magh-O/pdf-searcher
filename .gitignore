@@ -1,3 +1,4 @@
 # .gitignore
 files-to-search
 tests.py
+__pycache__
