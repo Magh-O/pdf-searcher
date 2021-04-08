@@ -1,4 +1,6 @@
 #Open a PDF and search an user determined text
+#By MaghO
+#v 1.0.0
 
 import io
 import os
@@ -10,11 +12,11 @@ from pdfminer.pdfinterp import PDFPageInterpreter
 from pdfminer.pdfinterp import PDFResourceManager
 from pdfminer.pdfpage import PDFPage
 
-pdf_path = './test.pdf'
+PDF_PATH = './files-to-search'
 
 def search_text(page, search_word):
     """This function gets a page in string format and a word to search, if the word appears in the 
-    page text it returns True"""
+    page text it returns True."""
 
     index = page.lower().find(search_word.lower())
     if index>=0:
@@ -39,7 +41,10 @@ def extract_page_text(pdf_path):
             converter.close()
             fake_f_handle.close()
 
-def extract_text(pdf_path, search_word):
+def find_in_pdf(pdf_path, search_word):
+    """This function gets a pdf path and a word to search, when it founds the word in a page adds that
+    page number to an array. When it finishes returns the array with the page numbers."""
+
     page_count = 1
     found_pages = []
     for page in extract_page_text(pdf_path):
@@ -57,16 +62,17 @@ def search_word_dir(filepath, search_word):
             filepath = subdir + os.sep + filename
 
             if filepath.endswith(".pdf"):
-                found_pages = extract_text(filepath, search_word)
-                #founds[filepath].append(found_pages)
+                found_pages = find_in_pdf(filepath, search_word)
+
                 print(filepath)
                 print(found_pages)
 
     print("Finished.")
 
-def main_loop():
+def main():
 
-    print(f"The current folder is {pathlib.Path(__file__).parent.absolute()}")
+    print(f"Actualmente te encuentras en el directorio {pathlib.Path(__file__).parent.absolute()}")
+    print(f"La busqueda va a realizarse en el directorio {PDF_PATH}")
     print("//////////////////////////////////////////////////////////////////")
     print("Introduce la palabra que desees encontrar, escribe exit para salir: ")
     while True:
@@ -77,8 +83,9 @@ def main_loop():
             print("Not valid format")
 
         if user_in != "exit":
-            search_word_dir('./files-to-search', user_in)
+            search_word_dir(PDF_PATH, user_in)
         else:
             break
 
-main_loop()
+if __name__ == "__main__":
+    main()
