@@ -47,7 +47,6 @@ if __name__ == "__main__":
     if len(sys.argv) > 2:
         try:
             file_path = sys.argv[1]
-            print(file_path)
             print(find_in_pdf(file_path, sys.argv[2]))
         except FileNotFoundError:
             print("File not found, check that the path is correct.")    

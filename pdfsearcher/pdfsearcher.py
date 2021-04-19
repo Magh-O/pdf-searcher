@@ -8,20 +8,19 @@ import pathlib
 
 import findPages
 
-PDF_PATH = '../data/'
+PDF_PATH = '..\data'
 
 def search_word_dir(filepath, search_word):
 
     print("Searching...")
-    print(filepath)
     for subdir, dirs, files in os.walk(filepath):
-        print("Llego")
+
         for filename in files:
             filepath = subdir + os.sep + filename
-            print("Llego")
+
             if filepath.endswith(".pdf"):
-                found_pages = findPages.find_in_pdf(filepath, search_word)
-                
+                found_pages = findPages.find_in_pdf(filepath, search_word)    
+
                 print(filepath)
                 print(found_pages)
 
