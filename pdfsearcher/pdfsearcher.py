@@ -20,7 +20,6 @@ def search_word_dir(filepath, search_word):
 
             if filepath.endswith(".pdf"):
                 found_pages = findPages.find_in_pdf(filepath, search_word)    
-
                 print(filepath)
                 print(found_pages)
 
@@ -44,5 +43,6 @@ def main():
         else:
             break
 
+  
 if __name__ == "__main__":
     main()

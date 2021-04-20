@@ -11,22 +11,24 @@ from pdfminer.pdfinterp import PDFResourceManager
 from pdfminer.pdfpage import PDFPage
 
 def extract_page_text(pdf_path):
+    try:
+        with open(pdf_path, 'rb') as f:
+            for page in PDFPage.get_pages(f, 
+                                        caching=True,
+                                        check_extractable=True):
+                res_manager = PDFResourceManager()
+                fake_f_handle = io.StringIO()
+                converter = TextConverter(res_manager, fake_f_handle)
+                page_interpreter = PDFPageInterpreter(res_manager, converter)
+                page_interpreter.process_page(page)
 
-    with open(pdf_path, 'rb') as f:
-        for page in PDFPage.get_pages(f, 
-                                    caching=True,
-                                    check_extractable=True):
-            res_manager = PDFResourceManager()
-            fake_f_handle = io.StringIO()
-            converter = TextConverter(res_manager, fake_f_handle)
-            page_interpreter = PDFPageInterpreter(res_manager, converter)
-            page_interpreter.process_page(page)
+                text = fake_f_handle.getvalue()
+                yield text
 
-            text = fake_f_handle.getvalue()
-            yield text
-
-            converter.close()
-            fake_f_handle.close()
+                converter.close()
+                fake_f_handle.close()
+    except PermissionError:
+        print("No tiene permisos de acceso en el archivo especificado o está seleccionando un directorio")
 
 
 def find_in_pdf(pdf_path, search_word):
