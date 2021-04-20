@@ -7,6 +7,7 @@ import os
 import pathlib
 
 import findPages
+import UserInterface
 
 PDF_PATH = '..\data'
 
@@ -25,7 +26,7 @@ def search_word_dir(filepath, search_word):
 
     print("Finished.")
 
-def main():
+def console_main():
 
     print(f"Actualmente te encuentras en el directorio {pathlib.Path(__file__).parent.absolute()}")
     print(f"La busqueda va a realizarse en el directorio {PDF_PATH}")
@@ -43,6 +44,11 @@ def main():
         else:
             break
 
+def main():
+    root = tk.Tk()
+    ui = UserInterface(master=root)
+    ui.master.title("PDF READER Interface")
+    ui.mainloop()
   
 if __name__ == "__main__":
     main()
