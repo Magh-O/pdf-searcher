@@ -1,15 +1,14 @@
-#Open a PDF and search an user determined text
-#By MaghO
-#v1.0.0
+#__main__.py
 
 import io
 import os
 import pathlib
+import tkinter as tk
 
-import findPages
-import UserInterface
+from pdfsearcher import findPages
+from pdfsearcher import UserInterface
 
-PDF_PATH = '..\data'
+#PDF_PATH = '..\data'
 
 def search_word_dir(filepath, search_word):
 
@@ -27,6 +26,8 @@ def search_word_dir(filepath, search_word):
     print("Finished.")
 
 def console_main():
+    """DEPRECATED - This fuction is not used anymore, is here to try to launch it from
+    the console in a future implementation"""
 
     print(f"Actualmente te encuentras en el directorio {pathlib.Path(__file__).parent.absolute()}")
     print(f"La busqueda va a realizarse en el directorio {PDF_PATH}")
@@ -46,7 +47,7 @@ def console_main():
 
 def main():
     root = tk.Tk()
-    ui = UserInterface(master=root)
+    ui = UserInterface.UserInterface(master=root)
     ui.master.title("PDF READER Interface")
     ui.mainloop()
   

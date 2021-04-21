@@ -1,4 +1,4 @@
-import searchText
+from pdfsearcher import searchText
 
 import io
 import os

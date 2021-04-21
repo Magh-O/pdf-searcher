@@ -1,4 +1,4 @@
-# WORK IN PROGRESS
+
 import io
 import os
 import pathlib
@@ -7,7 +7,7 @@ import tkinter as tk
 import tkinter.filedialog as tk_fd
 import tkinter.ttk as tk_ttk
 
-import findPages
+from pdfsearcher import findPages
 
 class UserInterface(tk.Frame):
 
@@ -70,7 +70,3 @@ class UserInterface(tk.Frame):
 
         popup.mainloop()
 
-root = tk.Tk()
-ui = UserInterface(master=root)
-ui.master.title("PDF READER Interface")
-ui.mainloop()
