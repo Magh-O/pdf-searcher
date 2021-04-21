@@ -2,3 +2,8 @@
 files-to-search
 tests.py
 __pycache__
+cli.spec
+pdf-reader.spec
+pdf-searcher.spec
+dist
+build
